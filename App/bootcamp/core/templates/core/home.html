@@ -30,7 +30,7 @@
 	</div>
 	<ul class="stream">
 	{% for feed in feeds %}
-		<li>{{ feed.post }} via: {{ feed.user }}</li>
+		{% include 'feeds/partial_feed.html' with feed=feed %}
 	{% endfor %}
 	</ul>
 	
