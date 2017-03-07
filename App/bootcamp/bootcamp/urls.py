@@ -16,12 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from feeds.views import home
+from feeds.views import home, post
 from questions.views import questions, ask
 admin.autodiscover()
 
 urlpatterns = [
 	url(r'^$', home, name="feeds"),
+    url(r'^post/$', post, name='post'),
 	url(r'^questions/$', questions, name="questions"),
     url(r'^ask/$', ask, name="ask"),
     url(r'^admin/', admin.site.urls),
