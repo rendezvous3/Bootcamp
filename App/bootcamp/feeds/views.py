@@ -9,4 +9,4 @@ def home(request):
 	context = {
 		'feeds': feeds,
 	}
-	return render(request, 'core/home.html', context)
+	return render(request, 'feeds/feeds.html', context)
