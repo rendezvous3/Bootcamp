@@ -17,8 +17,11 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from feeds.views import home
+from questions.views import questions
+admin.autodiscover()
 
 urlpatterns = [
 	url(r'^$', home, name="home"),
+	url(r'^questions/$', questions, name="questions"),
     url(r'^admin/', admin.site.urls),
 ]
