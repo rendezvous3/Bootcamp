@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock head  %}
+
+{% block main %}
+	{% for feed in feeds %}
+		{{ feed }}
+	{% endfor %}
+{% endblock main %}
