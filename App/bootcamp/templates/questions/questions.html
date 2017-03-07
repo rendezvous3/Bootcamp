@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 
+{% block head %}
+	<link href="../static/css/questions.css" rel="stylesheet">
+  	<script src="../static/js/questions.js"></script>
+{% endblock head %}
+
 {% block main %}
 	<div class="page-header btn-page-header">
 		<a class="btn btn-primary" href="{% url 'ask' %}">
 			<span class="glyphicon glyphicon-share-alt"></span>
 			Ask A Question
 		</a>
+		<hr/>
 		<h1>Questions</h1>
 	</div>
 	<ul class="questions">
