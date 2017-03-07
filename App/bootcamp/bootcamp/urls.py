@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from core.views import home
+from feeds.views import home
 
 urlpatterns = [
 	url(r'^$', home, name="home"),
