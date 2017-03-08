@@ -1,5 +1,5 @@
 $(function () {
-	$(".btn-page-header").click(function() {
+	$(".btn-compose").click(function() {
 		$(".compose textarea").val("");
 		$(".compose").slideDown(400, function(){
 			$(".compose textarea").focus()
