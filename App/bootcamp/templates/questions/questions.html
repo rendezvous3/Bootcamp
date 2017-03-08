@@ -16,7 +16,7 @@
 	</div>
 	<ul class="questions">
 		{% for question in questions %}
-			{{ question }}</br>
+			<a href="{{ question.get_absolute_url }}">{{ question.title }}</a></br>
 		{% endfor %}
 	</ul>
 

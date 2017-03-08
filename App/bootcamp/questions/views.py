@@ -47,5 +47,12 @@ def ask(request):
 		context = {
 			"form": form
 		}
-	return render(request, 'questions/ask.html', context)	
+	return render(request, 'questions/ask.html', context)
+
+def question(request, pk):
+	question = Question.objects.get(pk=pk)
+	context = {
+		'question': question,
+	}
+	return render(request, 'questions/question.html', context)		
 

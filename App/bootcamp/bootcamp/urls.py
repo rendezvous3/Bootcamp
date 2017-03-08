@@ -17,13 +17,14 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from feeds.views import home, post
-from questions.views import questions, ask
+from questions.views import questions, ask, question
 admin.autodiscover()
 
 urlpatterns = [
 	url(r'^$', home, name="feeds"),
     url(r'^post/$', post, name='post'),
 	url(r'^questions/$', questions, name="questions"),
+    url(r'^questions/(?P<pk>\d+)/$', question, name="question"),
     url(r'^questions/ask/$', ask, name="ask"),
     url(r'^admin/', admin.site.urls),
 ]

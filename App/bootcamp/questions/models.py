@@ -2,13 +2,14 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
 class Question(models.Model):
 	user = models.ForeignKey(User)
 	title= models.CharField(max_length=2000)
-	descritpion = models.TextField(max_length=2000)
+	description = models.TextField(max_length=2000)
 	tags = models.CharField(max_length=255, null=True, blank=True)
 	create_date = models.DateTimeField(auto_now_add=True)
 	update_date = models.DateTimeField(auto_now_add=True)
@@ -47,7 +48,11 @@ class Question(models.Model):
 		if len(self.descritpion) > 255:
 			return u'{0}...'.format(self.descritpion[:255])
 		else:
-			return self.descritpion			
+			return self.descritpion
+
+	def get_absolute_url(self):
+		return reverse("question", kwargs={'pk': self.id})
+
 
 
 class Answer(models.Model):
