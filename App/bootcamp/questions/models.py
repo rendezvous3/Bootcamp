@@ -45,10 +45,10 @@ class Question(models.Model):
 		return self.tags.split(" ")
 
 	def get_description_preview(self):
-		if len(self.descritpion) > 255:
-			return u'{0}...'.format(self.descritpion[:255])
+		if len(self.description) > 255:
+			return u'{0}...'.format(self.description[:255])
 		else:
-			return self.descritpion
+			return self.description
 
 	def get_absolute_url(self):
 		return reverse("question", kwargs={'pk': self.id})
@@ -58,7 +58,7 @@ class Question(models.Model):
 class Answer(models.Model):
 	user = models.ForeignKey(User)
 	question = models.ForeignKey(Question)
-	descritpion = models.TextField(max_length=2000)
+	description = models.TextField(max_length=2000)
 	create_date = models.DateTimeField(auto_now_add=True)
 	update_date = models.DateTimeField(null=True, blank=True)
 	votes = models.IntegerField(default=0)

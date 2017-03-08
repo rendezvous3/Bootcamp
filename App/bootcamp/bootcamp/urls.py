@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from feeds.views import home, post
-from questions.views import questions, ask, question
+from questions.views import questions, ask, question, answered, unanswered
 admin.autodiscover()
 
 urlpatterns = [
@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^post/$', post, name='post'),
 	url(r'^questions/$', questions, name="questions"),
     url(r'^questions/(?P<pk>\d+)/$', question, name="question"),
+    url(r'^questions/answered/$', answered, name="answered"),
+    url(r'^questions/unanswered/$', unanswered, name="unanswered"),
     url(r'^questions/ask/$', ask, name="ask"),
     url(r'^admin/', admin.site.urls),
 ]

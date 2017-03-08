@@ -1,0 +1,30 @@
+{% load humanize %}
+
+<div class="panel panel-default question" question-id="{{ question.id }}">
+	<div class="panel-heading">
+		<span class="asked">asked {{ question.update_date|naturaltime }}</span>
+		<h3 class="panel-title">
+			<a href="{{ question.get_absolute_url }}">{{ question.title }}</a>
+		</h3>
+	</div>
+	<div class="panel-body">
+		<div class="col-sm-3 pull-left">
+			<div class="question-user">
+				<a href="" class="user"><img src="http://www.gravatar.com/avatar/07626034d73ad893cf8a63cea49a4cb6?s=256&d=http%3A%2F%2Ftrybootcamp.vitorfs.com%2Fstatic%2Fimg%2Fuser.png"></a>
+				<a href="#" class="username">{{ question.user.get_full_name }}</a>
+			</div>
+			{% if question.get_tag_list %}
+				<p>
+					{% for tag in question.get_tag_list %}
+					<span class="label label-primary">{{ tag }}</span>
+					{% endfor %}
+				</p>
+			{% endif %}
+		</div>
+		<div class="col-sm-9">
+			<h4>Question</h4>
+			<hr/>
+			<p class="lead">{{ question.get_description_preview }}</p>
+		</div>
+	</div>
+</div>

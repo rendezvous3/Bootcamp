@@ -15,8 +15,13 @@
 		<h1>Questions</h1>
 	</div>
 	<ul class="questions">
+		<ul class="nav nav-tabs" style="margin-bottom: 1em">
+			 <li {% if active == 'all' %} class="active" {% endif %}><a href="{% url 'questions' %}">All Questions</a></li>
+			 <li {% if active == 'unanswered' %} class="active" {% endif %}><a href="{% url 'unanswered' %}">Unanswered</a></li>
+			 <li {% if active == 'answered' %} class="active" {% endif %}><a href="{% url 'answered' %}">Answered</a></li>			
+		</ul>
 		{% for question in questions %}
-			<a href="{{ question.get_absolute_url }}">{{ question.title }}</a></br>
+			{% include 'questions/partial_question.html' with question=question %}
 		{% endfor %}
 	</ul>
 
