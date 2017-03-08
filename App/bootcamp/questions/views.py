@@ -30,9 +30,22 @@ def unanswered(request):
 	return render(request, 'questions/questions.html', context)			
 
 def ask(request):
-	form = QuestionForm()
-	context = {
-		"form": form
-	}
+	if request.method == "POST":
+		form = QuestionForm(request.POST)
+		if form.is_valid():
+			question = Question()
+			question.user = request.user
+			question.title = form.cleaned_data.get('title')
+			question.description = form.cleaned_data.get('description')
+			question.tags = form.cleaned_data.get('tags')
+			question.save()
+			return redirect('questions')
+		else:
+			return render(request, 'questions/ask.html', {'form': form})
+	else:
+		form = QuestionForm()			
+		context = {
+			"form": form
+		}
 	return render(request, 'questions/ask.html', context)	
 

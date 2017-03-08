@@ -24,6 +24,6 @@ urlpatterns = [
 	url(r'^$', home, name="feeds"),
     url(r'^post/$', post, name='post'),
 	url(r'^questions/$', questions, name="questions"),
-    url(r'^ask/$', ask, name="ask"),
+    url(r'^questions/ask/$', ask, name="ask"),
     url(r'^admin/', admin.site.urls),
 ]
