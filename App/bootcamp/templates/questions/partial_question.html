@@ -4,6 +4,7 @@
 	<div class="panel-heading">
 		<span class="asked">asked {{ question.update_date|naturaltime }}</span>
 		<h3 class="panel-title">
+			<span class="badge">{{ question.get_answers_count }}</span>
 			<a href="{{ question.get_absolute_url }}">{{ question.title }}</a>
 		</h3>
 	</div>
