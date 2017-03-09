@@ -67,7 +67,7 @@ class Answer(models.Model):
 	class Meta:
 		verbose_name = 'Answer'
 		verbose_name_plural = 'Answers'
-		ordering = ('-create_date',)
+		ordering = ('-is_accepted', 'votes', 'create_date')
 
 	def accept(self):
 		answers = Answer.objects.filter(question=self.question)
@@ -75,7 +75,9 @@ class Answer(models.Model):
 			answer.is_accepted = False
 			answer.save()
 		self.is_accepted = True
-		self.save()	
+		self.save()
+		self.question.has_accepted_answer = True
+		self.question.save()	
 
 
 
