@@ -1,0 +1,21 @@
+{% load humanize %}
+
+<div class="row answer" anwer-id="{{ answer.id }}">
+	{% csrf_token %}
+	<div class="col-md-1 options">
+		<span class="glyphicon glyphicon-chevron-up vote"></span>
+		<span>0</span>
+		<span class="glyphicon glyphicon-chevron-down vote"></span>
+		{% if user == question.user %}
+			<span class="glyphicon glyphicon-ok accept{% if answer.is_accepted %} accepted{% endif %}" data-toggle="tooltip"></span>
+		{% endif %}
+	</div>
+	<div class="col-md-11">
+		<div class="answer-user">
+			<a href="#"><img src="http://www.gravatar.com/avatar/07626034d73ad893cf8a63cea49a4cb6?s=256&d=http%3A%2F%2Ftrybootcamp.vitorfs.com%2Fstatic%2Fimg%2Fuser.png"></a>
+			<a href="#" class="username">{{ answer.user.get_full_name }}</a>
+			<small class="answered">answered {{ answer.create_date|naturaltime }}</small>
+		</div>
+		<p>{{ answer.description }}</p>
+	</div>
+</div>
