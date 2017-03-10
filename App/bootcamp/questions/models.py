@@ -77,7 +77,10 @@ class Answer(models.Model):
 		self.is_accepted = True
 		self.save()
 		self.question.has_accepted_answer = True
-		self.question.save()	
+		self.question.save()
+
+	def __unicode__(self):
+		return "Answer to " + self.question.description + " with title " + self.question.title		
 
 
 

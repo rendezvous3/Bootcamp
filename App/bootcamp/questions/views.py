@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from .models import Question, Answer
+from .forms import QuestionForm, AnswerForm
 
 # Create your views here.
 
@@ -51,8 +54,40 @@ def ask(request):
 
 def question(request, pk):
 	question = Question.objects.get(pk=pk)
+	form = AnswerForm(initial={'question': question})
 	context = {
 		'question': question,
+		'form': form,
 	}
-	return render(request, 'questions/question.html', context)		
+	return render(request, 'questions/question.html', context)
+
+def answer(request):
+	if request.method == "POST":
+		form = AnswerForm(request.POST)
+		if form.is_valid():
+			answer = Answer()
+			answer.user = request.user
+			answer.question = form.cleaned_data.get('question')
+			answer.description = form.cleaned_data.get('description')
+			answer.save()
+			return redirect(u'/questions/{0}/'.format(answer.question.pk))
+		else:
+			question = form.cleaned_data.get('question')
+			return render(request, 'questions/question.html', {'question': question, 'form': form})
+	else:
+		return redirect('/questions/')
+
+def accept(request):
+	answer_id = request.POST['answer']
+	answer    = Answer.objects.get(pk=answer_id)
+	answer.accept()
+	return HttpResponse('')					
+
+
+
+
+
+
+
+
 

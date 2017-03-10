@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static    
 
 from feeds.views import home, post
-from questions.views import questions, ask, question, answered, unanswered
+from questions.views import questions, ask, question, answered, unanswered, answer, accept
 admin.autodiscover()
 
 urlpatterns = [
@@ -30,6 +30,8 @@ urlpatterns = [
     url(r'^questions/answered/$', answered, name="answered"),
     url(r'^questions/unanswered/$', unanswered, name="unanswered"),
     url(r'^questions/ask/$', ask, name="ask"),
+    url(r'^questions/answer/$', answer, name="answer"),
+    url(r'^questions/answer/accept/$', accept, name="accept"),
     url(r'^admin/', admin.site.urls),
 ]
 
